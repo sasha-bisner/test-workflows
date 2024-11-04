@@ -9,6 +9,7 @@ jobs:
       matrix:
         retry: [1, 2, 3]  # Кількість повторів
       max-parallel: 1      # Ліміт на одночасне виконання
+      fail-fast: false
 
     name: Deploy Attempt ${{ matrix.retry }}
     runs-on: ubuntu-latest
