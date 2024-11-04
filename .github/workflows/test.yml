@@ -29,4 +29,5 @@ jobs:
             exit 1  # Call error for testing retries
           else
             echo "Deployment succeeded on attempt ${{ matrix.retry }}"
+            exit 0  # Успішне завершення
           fi
