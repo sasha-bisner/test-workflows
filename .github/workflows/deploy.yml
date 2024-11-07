@@ -5,10 +5,38 @@ on:
   workflow_call:
 
 jobs:
-  deploy:
-    name: Deploy Attempt ${{ matrix.retry }}
+  deploy_batch_1:
+    name: Deploy Batch 1 Attempt ${{ matrix.retry }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        retry: [1]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
+      - name: Log Deploy Attempt
+        run: |
+          echo "Attempting deployment: ${{ matrix.retry }}"
+          # Script for deploy, for example:
+          # az webapp up --name your_app_name --resource-group your_resource_group
+          
+          # Simulation of failure
+          if [[ ${{ matrix.retry }} -lt 3 ]]; then
+            echo "Simulating failure..."
+            exit 1  # Call error for testing retries
+          else
+            echo "Deployment succeeded on attempt ${{ matrix.retry }}"
+            exit 0  # Успішне завершення
+          fi
+
+    
+  deploy_batch_2:
+    name: Deploy Batch 2 Attempt ${{ matrix.retry }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        retry: [2]
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
