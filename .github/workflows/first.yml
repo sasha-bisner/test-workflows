@@ -1,0 +1,10 @@
+name: First
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: 'Deploy First Workflow'
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
